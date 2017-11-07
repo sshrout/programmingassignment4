@@ -35,7 +35,7 @@ public class ProgrammingAssignment4 {
         try (Scanner reader = new Scanner(new File("random_dictionary.txt"))) {
             while (reader.hasNextLine()) {
                 currentWord = reader.nextLine();
-            dictionary[currentWord.charAt(0) - 97].add(currentWord);       
+            dictionary[currentWord.toLowerCase().charAt(0) - 97].add(currentWord);       
             }
             
          
