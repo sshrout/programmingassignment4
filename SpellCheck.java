@@ -20,6 +20,13 @@ public class SpellCheck {
      static boolean dictionaryInitialized = false;
      long[] spellStats = new long[4];
      
+  /**
+   * Create a SpellCheck object using the given fileName
+   * @param fileName the name of the file on which the spell check should be done
+   * @requires a valid fileName
+   * @ensures a SpelLCheck object is created associated with the given file and that dictionary is initialized
+   */
+     
     public SpellCheck(String fileName) {
         this.fileName = fileName;
         if (dictionaryInitialized == false) {
@@ -30,13 +37,19 @@ public class SpellCheck {
         
     }
     
+    /**
+     * Displays spell check stats
+     * @requires a valid fileName has been specified for the SpellCheck object
+     * @ensures the spell check stats are printed to the screen for the given file
+     */
+    
     public void runSpellCheck() {
         
         try (Scanner spellScan = new Scanner(new File(fileName))) {
          String currentWord;
          int firstLetterCharNumber;
             while (spellScan.hasNext()) {
-             currentWord = spellScan.next().replace("\"", "").replace(",", "").replace(":","").replace(".","").replace("!","").replace("-","").replace("(","").replace(")","").replace("'","").replace("?","").replace(";","").trim();
+             currentWord = spellScan.next().replace("\"", "").replace(",", "").replace(":","").replace(".","").replace("!","").replace("-","").replace("(","").replace(")","").replace("?","").replace(";","").trim();
              if (currentWord.length() > 0) {
             firstLetterCharNumber = currentWord.toLowerCase().charAt(0) - 97;
              if (firstLetterCharNumber >= 0 && firstLetterCharNumber <= 26) {
@@ -47,7 +60,7 @@ public class SpellCheck {
              }
              else 
              {
-                 System.out.println(currentWord);
+                 
                  spellStats[1] += 1;
              }
              }
@@ -72,7 +85,11 @@ public class SpellCheck {
         
     }
     
-    
+    /**
+     * Initialize the dictionary lists
+     * @requires a valid dictionary file is found
+     * @ensures dictionary[] lists are initialized from the words found in the dictionary file
+     */
     
       private static void initializeDictionary() {  
         for (int i = 0; i < 26; i++) {
@@ -95,6 +112,7 @@ public class SpellCheck {
           System.out.println("The dictionary file could not be found.");  
             
         }
+         
     }
     
     
