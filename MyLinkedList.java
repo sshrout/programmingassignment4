@@ -212,7 +212,24 @@ public class MyLinkedList<E> extends MyAbstractList<E> {
         }
         return false;
     }
+ public boolean contains(E e, long[] spellStats) {
+        Node<E> current = this.head;
+        long i = 0;
+        while (current != null) {
+            i++;
+            if (current.element.equals(e)) {
+                spellStats[2] += i;
+                return true;
+            }
+            
+            current = current.next;
 
+        }
+        spellStats[3] += i;
+        return false;
+    }
+ 
+ 
     public E get(int index) {
 
         Node<E> current = this.head;
